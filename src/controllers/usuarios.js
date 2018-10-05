@@ -1,7 +1,7 @@
 const model = require("../models/");
 
 module.exports = function(app) {
-  app.delete("/usuarios/:id", (req, res) => {
+  app.get("/usuarios/:id", (req, res) => {
     let id = req.params.id;
     model.Usuarios.findById(id)
       .then(usuario => {
@@ -15,26 +15,34 @@ module.exports = function(app) {
 
   app.post("/usuarios", (req, res) => {
     let usuario = req.body;
-    console.log("__teste", usuario);
-    model.Usuarios.create({
-      Login: "igor",
-      Password: null,
-      Email: "igor.vettorello@hotmail.com",
-      CreateAt: new Date(),
-      UpdateAt: new Date()
-    })
+    usuario.CreateAt = new Date();
+    usuario.UpdateAt = new Date();
+    console.log("usuario", usuario);
+
+    model.Usuarios.create(usuario)
       .then(_usuario => {
         console.log(_usuario.dataValues);
         res.status(201).json({ usuario: _usuario.dataValues });
       })
       .catch(error => {
-        res.status(400).json({ usuario: _usuario.dataValues });
+        res.status(400);
       });
   });
 
   app.put("/usuarios/:id", (req, res) => {
-    var dados = req.body;
-    res.status(200).json();
+    let usuario = req.body;
+    usuario.Id = req.params.id;
+    usuario.UpdateAt = new Date();
+    console.log("usuario", usuario);
+
+    model.Usuarios.create(usuario)
+      .then(_usuario => {
+        console.log(_usuario.dataValues);
+        res.status(202).json({ usuario: _usuario.dataValues });
+      })
+      .catch(error => {
+        res.status(400);
+      });
   });
 
   app.get("/usuarios/:id", (req, res) => {
