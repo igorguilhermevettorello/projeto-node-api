@@ -4,7 +4,7 @@
   "description": "Teste para api node utilizando sequelize",
   "main": "src/index.js",
   "scripts": {
-    "start": "npm src/index.js"
+    "start": "node src"
   },
   "dependencies": {
     "body-parser": "1.18.3",
