@@ -5,7 +5,10 @@ module.exports = function(app) {
     let id = req.params.id;
     model.Usuarios.findById(id)
       .then(usuario => {
-        res.status(200).json({ usuario: usuario.dataValues });
+        if (usuario == null)
+          res.status(404);
+        else
+          res.status(200).json({ usuario: usuario.dataValues });
       })
       .catch(error => {
         console.log("error", error);
