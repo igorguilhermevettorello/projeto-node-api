@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "sandbox_nodejs",
+    "password": "sandbox_nodejs",
+    "database": "sandbox_nodejs",
+    "host": "sandbox_nodejs.mysql.dbaas.com.br",
+    "dialect": "mysql",
+    "logging": true
+  },
+  "test": {
+    "username": "xxx",
+    "password": "xxx",
+    "database": "xxx",
+    "host": "xxx",
+    "dialect": "xxx",
+    "logging": true
+  },
+  "production": {
+    "username": "sandbox_nodejs",
+    "password": "sandbox_nodejs",
+    "database": "sandbox_nodejs",
+    "host": "sandbox_nodejs.mysql.dbaas.com.br",
+    "dialect": "mysql",
+    "logging": true
+  }
+}
