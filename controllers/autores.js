@@ -33,13 +33,32 @@ module.exports = function(app) {
     autor.createAt = new Date();
     autor.updateAt = new Date();
 
-    model.autores.create(autor)
-      .then(_autor => {
-        res.status(201).json({ autor: _autor.dataValues });
-      })
-      .catch(error => {
-        res.status(400).json({ autor: null });
-      });
+    let error = [];
+    if ((typeof(autor.nome) === "undefined") || (autor.nome.trim() === "")) {
+      error.push({campo:"nome", mensagem:"Campo nome é obrigatório."});
+    }
+    
+    if ((typeof(autor.email) === "undefined") || (autor.email.trim() === "")) {
+      error.push({campo:"email", mensagem:"Campo e-mail é obrigatório."});
+    }
+    
+    if ((typeof(autor.password) === "undefined") || (autor.password.trim() === "")) {
+      error.push({campo:"senha", mensagem:"Campo senha é obrigatório."});
+    }
+    
+    if (error.length === 0) {
+      res.status(400).json({ error: error });
+    } else {
+      model
+        .autores
+        .create(autor)
+        .then(_autor => {
+          res.status(201).json({ autor: _autor.dataValues });
+        })
+        .catch(error => {
+          res.status(400).json({ error: null });
+        });
+    }
   });
 
   app.put("/autores/:id", (req, res) => {
