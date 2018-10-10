@@ -46,7 +46,7 @@ module.exports = function(app) {
       error.push({campo:"senha", mensagem:"Campo senha é obrigatório."});
     }
     
-    if (error.length === 0) {
+    if (error.length > 0) {
       res.status(400).json({ error: error });
     } else {
       model
