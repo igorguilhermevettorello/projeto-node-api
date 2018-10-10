@@ -43,7 +43,7 @@ module.exports = function(app) {
     }
     
     if ((typeof(autor.password) === "undefined") || (autor.password.trim() === "")) {
-      error.push({campo:"senha", mensagem:"Campo senha é obrigatório."});
+      error.push({campo:"password", mensagem:"Campo senha é obrigatório."});
     }
     
     if (error.length > 0) {
