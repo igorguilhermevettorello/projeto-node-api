@@ -6,7 +6,7 @@ module.exports = function(app) {
     let id = req.params.id;
     model.jogos.findAll()
       .then(jogos => {
-        jogos = jogos.map(jogo => jogos.dataValues);
+        jogos = jogos.map(jogo => jogo.dataValues);
         res.status(200).json({ jogos });
       })
       .catch(error => {
