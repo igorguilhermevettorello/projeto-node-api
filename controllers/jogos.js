@@ -46,24 +46,20 @@ module.exports = function(app) {
       error.push({campo:"rodada", mensagem:"Campo rodada é obrigatório."});
     }
 
-    if ((typeof(autor.data) === "undefined") || (autor.data.trim() === "")) {
-      error.push({campo:"data", mensagem:"Campo data é obrigatório."});
+    if ((typeof(autor.datahora) === "undefined") || (autor.datahora.trim() === "")) {
+      error.push({campo:"datahora", mensagem:"Campo data é obrigatório."});
     }
 
     if ((typeof(autor.partida) === "undefined") || (autor.partida.trim() === "")) {
       error.push({campo:"partida", mensagem:"Campo partida é obrigatório."});
     }
 
-    if ((typeof(autor.horario) === "undefined") || (autor.horario.trim() === "")) {
-      error.push({campo:"horario", mensagem:"Campo horário é obrigatório."});
+    if ((typeof(autor.casa) === "undefined") || (autor.casa.trim() === "")) {
+      error.push({campo:"casa", mensagem:"Campo time da casa é obrigatório."});
     }
 
-    if ((typeof(autor.time_casa) === "undefined") || (autor.time_casa.trim() === "")) {
-      error.push({campo:"time_casa", mensagem:"Campo time da casa é obrigatório."});
-    }
-
-    if ((typeof(autor.time_visitante) === "undefined") || (autor.time_visitante.trim() === "")) {
-      error.push({campo:"time_visitante", mensagem:"Campo time visitante é obrigatório."});
+    if ((typeof(autor.visitante) === "undefined") || (autor.visitante.trim() === "")) {
+      error.push({campo:"visitante", mensagem:"Campo time visitante é obrigatório."});
     }
 
     if (error.length > 0) {
