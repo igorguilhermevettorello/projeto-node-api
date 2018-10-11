@@ -32,7 +32,8 @@ module.exports = function(app) {
     let jogo = req.body;
     jogo.createAt = new Date();
     jogo.updateAt = new Date();
-
+    console.log(jogo);
+    
     let error = [];
     if ((typeof(jogo.modalidade) === "undefined") || (jogo.modalidade.trim() === "")) {
       error.push({campo:"modalidade", mensagem:"Campo modalidade é obrigatório."});
