@@ -33,34 +33,35 @@ module.exports = function(app) {
     jogo.createAt = new Date();
     jogo.updateAt = new Date();
     console.log(jogo);
+    console.log(typeof(jogo.datahora));
     
     let error = [];
     if ((typeof(jogo.modalidade) === "undefined") || (jogo.modalidade.trim() === "")) {
-      error.push({campo:"modalidade", mensagem:"Campo modalidade é obrigatório."});
+      error.push({campo:"modalidade", mensagem:"Campo Modalidade é obrigatório."});
     }
 
     if ((typeof(jogo.campeonato) === "undefined") || (jogo.campeonato.trim() === "")) {
-      error.push({campo:"campeonato", mensagem:"Campo campeonato é obrigatório."});
+      error.push({campo:"campeonato", mensagem:"Campo Campeonato é obrigatório."});
     }
 
-    if ((typeof(jogo.rodada) === "undefined") || (jogo.rodada.trim() === "")) {
-      error.push({campo:"rodada", mensagem:"Campo rodada é obrigatório."});
+    if ((typeof(jogo.rodada) === "undefined") || (jogo.rodada.trim() === "") || (isNaN(jogo.rodada)) || (parseInt(jogo.rodada) <= 0)) {
+      error.push({campo:"rodada", mensagem:"Campo Rodada é obrigatório."});
     }
 
     if ((typeof(jogo.datahora) === "undefined") || (jogo.datahora.trim() === "")) {
-      error.push({campo:"datahora", mensagem:"Campo data é obrigatório."});
+      error.push({campo:"datahora", mensagem:"Campo Data / hora é obrigatório."});
     }
 
-    if ((typeof(jogo.partida) === "undefined") || (jogo.partida.trim() === "")) {
-      error.push({campo:"partida", mensagem:"Campo partida é obrigatório."});
+    if ((typeof(jogo.partida) === "undefined") || (jogo.partida.trim() === "") || (isNaN(jogo.partida)) || (parseInt(jogo.partida) <= 0)) {
+      error.push({campo:"partida", mensagem:"Campo Partida é obrigatório."});
     }
 
     if ((typeof(jogo.casa) === "undefined") || (jogo.casa.trim() === "")) {
-      error.push({campo:"casa", mensagem:"Campo time da casa é obrigatório."});
+      error.push({campo:"casa", mensagem:"Campo Time da casa é obrigatório."});
     }
 
     if ((typeof(jogo.visitante) === "undefined") || (jogo.visitante.trim() === "")) {
-      error.push({campo:"visitante", mensagem:"Campo time visitante é obrigatório."});
+      error.push({campo:"visitante", mensagem:"Campo Time visitante é obrigatório."});
     }
 
     if (error.length > 0) {
