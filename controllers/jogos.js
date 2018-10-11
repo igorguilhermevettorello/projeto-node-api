@@ -4,27 +4,27 @@ module.exports = function(app) {
 
   app.get("/jogos", (req, res) => {
     let id = req.params.id;
-    model.autores.findAll()
-      .then(autores => {
-        autores = autores.map(autor => autor.dataValues);
-        res.status(200).json({ autores });
+    model.jogos.findAll()
+      .then(jogos => {
+        jogos = jogos.map(jogo => jogos.dataValues);
+        res.status(200).json({ jogos });
       })
       .catch(error => {
-        res.status(404).json({ autor: null });
+        res.status(404).json({ jogos: null });
       });
   });
 
   app.get("/jogos/:id", (req, res) => {
     let id = req.params.id;
-    model.autores.findById(id)
-      .then(autor => {
-        if (autor == null)
-          res.status(404).json({ autor: autor });
+    model.jogos.findById(id)
+      .then(jogo => {
+        if (jogo == null)
+          res.status(404).json({ jogo: jogo });
         else
-          res.status(200).json({ autor: autor.dataValues });
+          res.status(200).json({ jogo: jogo.dataValues });
       })
       .catch(error => {
-        res.status(404).json({ autor: null });
+        res.status(404).json({ jogo: null });
       });
   });
 
@@ -34,31 +34,31 @@ module.exports = function(app) {
     jogo.updateAt = new Date();
 
     let error = [];
-    if ((typeof(jogo.modalidade) === "undefined") || (autor.modalidade.trim() === "")) {
+    if ((typeof(jogo.modalidade) === "undefined") || (jogo.modalidade.trim() === "")) {
       error.push({campo:"modalidade", mensagem:"Campo modalidade é obrigatório."});
     }
 
-    if ((typeof(autor.campeonato) === "undefined") || (autor.campeonato.trim() === "")) {
+    if ((typeof(jogo.campeonato) === "undefined") || (jogo.campeonato.trim() === "")) {
       error.push({campo:"campeonato", mensagem:"Campo campeonato é obrigatório."});
     }
 
-    if ((typeof(autor.rodada) === "undefined") || (autor.rodada.trim() === "")) {
+    if ((typeof(jogo.rodada) === "undefined") || (jogo.rodada.trim() === "")) {
       error.push({campo:"rodada", mensagem:"Campo rodada é obrigatório."});
     }
 
-    if ((typeof(autor.datahora) === "undefined") || (autor.datahora.trim() === "")) {
+    if ((typeof(jogo.datahora) === "undefined") || (jogo.datahora.trim() === "")) {
       error.push({campo:"datahora", mensagem:"Campo data é obrigatório."});
     }
 
-    if ((typeof(autor.partida) === "undefined") || (autor.partida.trim() === "")) {
+    if ((typeof(jogo.partida) === "undefined") || (jogo.partida.trim() === "")) {
       error.push({campo:"partida", mensagem:"Campo partida é obrigatório."});
     }
 
-    if ((typeof(autor.casa) === "undefined") || (autor.casa.trim() === "")) {
+    if ((typeof(jogo.casa) === "undefined") || (jogo.casa.trim() === "")) {
       error.push({campo:"casa", mensagem:"Campo time da casa é obrigatório."});
     }
 
-    if ((typeof(autor.visitante) === "undefined") || (autor.visitante.trim() === "")) {
+    if ((typeof(jogo.visitante) === "undefined") || (jogo.visitante.trim() === "")) {
       error.push({campo:"visitante", mensagem:"Campo time visitante é obrigatório."});
     }
 
