@@ -32,8 +32,6 @@ module.exports = function(app) {
     let jogo = req.body;
     jogo.createAt = new Date();
     jogo.updateAt = new Date();
-    console.log(jogo);
-    console.log(typeof(jogo.datahora));
     
     let error = [];
     if ((typeof(jogo.modalidade) === "undefined") || (jogo.modalidade.trim() === "")) {
