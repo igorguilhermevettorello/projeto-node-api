@@ -32,7 +32,7 @@ module.exports = function(app) {
     let jogo = req.body;
     jogo.createAt = new Date();
     jogo.updateAt = new Date();
-    
+
     let error = [];
     if ((typeof(jogo.modalidade) === "undefined") || (jogo.modalidade.trim() === "")) {
       error.push({campo:"modalidade", mensagem:"Campo Modalidade é obrigatório."});
@@ -78,17 +78,18 @@ module.exports = function(app) {
   });
 
   app.put("/jogos/:id", (req, res) => {
-    let autor = req.body;
-    autor.updateAt = new Date();
+    let jogo = req.body;
+    jogo.id = req.params.id;
+    jogo.updateAt = new Date();
 
-    model.autores.update(autor, {where: {id: req.params.id} })
-      .then(_autor => {
-         model.autores.findById(req.params.id)
-          .then(autor => {
-            if (autor == null)
-              res.status(404).json({ autor: autor });
+    model.jogos.update(jogo, {where: {id: req.params.id} })
+      .then(_jogo => {
+         model.jogos.findById(req.params.id)
+          .then(_jogo => {
+            if (_jogo == null)
+              res.status(404).json({ jogo: _jogo });
             else
-              res.status(200).json({ autor: autor.dataValues });
+              res.status(200).json({ jogo: _jogo.dataValues });
           })
           .catch(error => {
             res.status(404).json({ autor: null });
@@ -101,10 +102,9 @@ module.exports = function(app) {
 
   app.delete("/jogos/:id", (req, res) => {
     model
-      .autores
+      .jogos
       .destroy({where: { id: req.params.id }})
       .then(rowDeleted => {
-        console.log("rowDeleted", rowDeleted);
         if (rowDeleted === 1) {
           res.status(204).json(null);
         } else {
