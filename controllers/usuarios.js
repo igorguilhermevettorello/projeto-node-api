@@ -46,10 +46,9 @@ module.exports = function(app) {
   });
 
   app.post("/usuarios", (req, res) => {
-    let usuario = req.body.usuario;
+    let usuario = req.body;
     usuario.createAt = new Date();
     usuario.updateAt = new Date();
-
     console.log("usuario", usuario);
     
     let error = validarFormulario(usuario);
