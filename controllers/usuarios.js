@@ -50,6 +50,8 @@ module.exports = function(app) {
     usuario.createAt = new Date();
     usuario.updateAt = new Date();
 
+    console.log("usuario", usuario);
+    
     let error = validarFormulario(usuario);
 
     if (error.length > 0) {
