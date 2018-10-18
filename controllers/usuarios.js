@@ -46,7 +46,7 @@ module.exports = function(app) {
   });
 
   app.post("/usuarios", (req, res) => {
-    let usuario = req.body;
+    let usuario = req.body.usuario;
     usuario.createAt = new Date();
     usuario.updateAt = new Date();
 
@@ -68,9 +68,9 @@ module.exports = function(app) {
   });
 
   app.put("/usuarios/:id", (req, res) => {
-    let usuario = req.body;
+    let usuario = req.body.usuario;
     usuario.updateAt = new Date();
-
+    console.log("usuario", usuario);
     let error = validarFormulario(usuario);
 
     if (error.length > 0) {
